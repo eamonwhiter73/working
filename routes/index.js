@@ -3,8 +3,15 @@
  * GET home page.
  */
 
-exports.index = function(req, res){
-  res.render('index');
+exports.index = function(User) {
+  return function(req, res) {
+    User.find({}, function(error, users) {
+      res.render('index', {
+        title: 'Express',
+        users : users
+      });
+    });
+  };
 };
 
 exports.partials = function (req, res) {
@@ -24,3 +31,30 @@ exports.addUser = function (User) {
     });
   };
 }
+
+exports.get = function(User) {
+  return function(req, res) {
+    User.find({}, function(error, users) {
+      res.json({ users : users });
+    });
+  }
+};
+
+exports.update = function(User) {
+  return function(req, res) {
+    User.findOne({ _id : req.params.id }, function(error, user) {
+      if (error || !user) {
+        res.json({ error : error });
+      } else {
+        user.done = req.body.done;
+        user.save(function(error, user) {
+          if (error || !user) {
+            res.json({ error : error });
+          } else {
+            res.json({ user : user });
+          }
+        });
+      }
+    });
+  }
+};

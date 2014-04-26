@@ -1,7 +1,7 @@
 extends layout
 
 block body
-  div(class="signupdiv", ng-controller='AppCtrl')
+  div(ng-controller='AppCtrl', ng-init="setUsers( #{JSON.stringify(users)} )")
     h1 Sign Up
 
     form(novalidate, ng-submit='addUser()')

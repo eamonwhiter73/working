@@ -47,13 +47,16 @@ if (app.get('env') === 'production') {
  */
 
 // serve index and view partials
-app.get('/', routes.index);
+app.get('/', routes.index(User));
 app.get('/partials/:name', routes.partials);
+app.get('/users.json', routes.get(User));
+
+app.put('/user/:id.json', routes.update(User));
 
 app.post('/user.json', routes.addUser(User));
 
 // redirect all others to the index (HTML5 history)
-app.get('*', routes.index);
+app.get('*', routes.index(User));
 
 
 /**

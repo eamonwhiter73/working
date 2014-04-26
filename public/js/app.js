@@ -23,6 +23,31 @@ myApp.controller('AppCtrl', ['$scope', '$http', '$location',
         }
       });
     };
+
+    $scope.setUsers = function(users) {
+      $scope.users = users;
+    };
+
+    $scope.update = function(user) {
+      $http.put('/user/' + user._id + '.json', user).success(function(data) {
+        if (!data.user) {
+          alert(JSON.stringify(data));
+        }
+      });
+    };
+
+    $scope.updateList = function() {
+      $http.get('/users.json').success(function(data) {
+        $scope.users = data.users;
+      });
+    };
+
+    setInterval(function() {
+      $scope.updateList();
+      $scope.$apply();
+    }, 30 * 60 * 1000); // update every 30 minutes;
+
+    $scope.updateList();
   }
 ]);
 
