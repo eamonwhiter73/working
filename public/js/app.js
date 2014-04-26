@@ -26,9 +26,8 @@ myApp.controller('AppCtrl', ['$scope', '$http', '$location',
   }
 ]);
 
-myApp.controller('MyCtrl1', function ($scope) {
-    // write Ctrl here
-
+myApp.controller('MyCtrl1', function () {
+    $(".signupdiv").remove();
 });
 
 myApp.controller('MyCtrl2', function ($scope) {

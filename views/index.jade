@@ -1,7 +1,7 @@
 extends layout
 
 block body
-  div(ng-controller='AppCtrl')
+  div(class="signupdiv", ng-controller='AppCtrl')
     h1 Sign Up
 
     form(novalidate, ng-submit='addUser()')
@@ -16,7 +16,7 @@ block body
       div {{newUser.username}}
       div {{newUser.password}}
 
-    div(ng-view)
+  div(ng-view)
 
   script(src='js/lib/angular/angular.js')
   script(src='js/bootstrap.js')
