@@ -2,7 +2,20 @@ extends layout
 
 block body
   div(ng-controller='AppCtrl')
-    h2 Hello {{name}}
+    h1 Sign Up
+
+    form(novalidate, ng-submit='addUser()')
+      input( type="text", ng-model="newUser.username")
+      br
+      input( type="password", ng-model="newUser.password")
+      br
+      input( type="password" )
+      br
+      button.btn.btn-primary(type="submit") Submit
+    h2 Adding...
+      div {{newUser.username}}
+      div {{newUser.password}}
+
     ul.menu
       li
         a(href='view1') view1
@@ -11,13 +24,5 @@ block body
 
     div(ng-view)
 
-    div
-      | Angular seed app: v
-      span(app-version)
-
   script(src='js/lib/angular/angular.js')
   script(src='js/app.js')
-  script(src='js/services.js')
-  script(src='js/controllers.js')
-  script(src='js/filters.js')
-  script(src='js/directives.js')
